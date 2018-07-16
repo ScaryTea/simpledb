@@ -132,7 +132,7 @@ static const char *const args_docstring = {
 /* The switches program accepts. See https://tinyurl.com/argp-option-vectors */
 static struct argp_option args_parse_opts[] = {
  {"dir", 'd', "DIR", OPTION_ARG_OPTIONAL, "A directory containing DB files", 0},
- {"query", 'q', "QUERY", OPTION_ARG_OPTIONAL, "A query for DB. For sytax, see \"-q help\"", 0},
+ {"query", 'q', "QUERY", OPTION_ARG_OPTIONAL, "A query for DB. For syntax, see \"-q help\"", 0},
  {"gui", -1, 0, OPTION_ARG_OPTIONAL, "Run GUI instead of console", 0},
  {"quiet", 'Q', 0, OPTION_ARG_OPTIONAL, "Produce less output", 0},
  { 0 }	 /* Terminator. Required by argp */
@@ -255,7 +255,7 @@ int main(int argc, char *argv[]) {
 			struct strvec v;
 			if ((lerr = listdir(args.dir, &v)) != E_OK)
 				err_exit(args.isquiet, lerr);
-			printf("Lising keys in db:\n");
+			printf("Listing keys in db:\n");
 			unsigned long i;
 			for (i = 0; i < v.n; i++) {
 				printf(">>\t%s\n", v.vec[i]);

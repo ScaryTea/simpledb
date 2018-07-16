@@ -136,7 +136,7 @@ enum err listdir(const char *dirname, struct strvec *vector)
 
 FILE *xopen(const char *pathname, const char *mode)
 {
-	int fd = open(pathname, O_RDWR | O_CREAT, 0666);  /* "a+" + creation */
+	int fd = open(pathname, O_RDWR | O_CREAT, 0666);  /* "r+" + creation */
 	if (fd < 0)
 		return NULL;
 	return fdopen(fd, mode);

@@ -58,6 +58,4 @@ enum err listdir(const char *, struct strvec *);
  */
 char *m_strjoin(const char *, const char *, const char *);
 
-enum err item_remove_bykey(const char *, const char *);
-
 FILE *xopen(const char *, const char *);
