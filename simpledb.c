@@ -115,13 +115,13 @@ enum err listdir(const char *dirname, struct strvec *vector)
 		goto cleanup_item_listdir;
 	}
 
-	vector->vec = malloc(n * sizeof *vector->vec);
+	if (NULL == (vector->vec = malloc(n * sizeof *vector->vec)))
+		errlevel = E_OSERR;
 	/* Copy contents to vec. If error occurs, stop copy and stick with what we have */
 	int i;
-	for (i = 0; i < n; i++) {
-		vector->vec[i] = strdup(namelist[i]->d_name);
-		if (vector->vec == NULL) break;
-	}
+	for (i = 0; i < n; i++)
+		if (NULL == (vector->vec[i] = strdup(namelist[i]->d_name)))
+			break;
 	vector->n = i;
 	if (i != n)
 		errlevel = E_OSERR;
