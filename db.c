@@ -68,6 +68,7 @@ static char *query_name[] = {
 static struct dbitem make_item(const char *str)
 {
 	struct dbitem ret = {0};
+	if (str == NULL) return ret;
 	/* See expaination of how it works in main */
 	/* ord: last -> first -> email	*/
 	char *bkp, *ptr, *last_name, *first_name, *email, *date;
@@ -270,6 +271,8 @@ int main(int argc, char *argv[]) {
 			break;	
 		case Q_GET:;
 			char *fname = m_strjoin("/", args.dir, qval);
+			if (NULL == fname)
+				err_exit(args.isquiet, EM_QUERY);
 			struct dbitem itm;
 			if ((lerr = item_read(fname, &itm)) != E_OK) {
 				item_remove_bykey(qval, args.dir);
@@ -290,6 +293,8 @@ int main(int argc, char *argv[]) {
 		case Q_ADD:;
 			struct dbitem item = make_item(qval);
 			char *fn = m_strjoin("/", args.dir, item.key);
+			if (NULL == fn)
+				err_exit(args.isquiet, EM_QUERY);
 			if ((lerr = item_write(fn, &item)) != E_OK) {
 				free(fn);
 				err_exit(args.isquiet, lerr);

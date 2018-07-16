@@ -66,6 +66,8 @@ enum err item_write(const char *pathname, struct dbitem *item)
 
 char *m_strjoin(const char *delimeter, const char *str1, const char *str2)
 {
+	if (NULL == str2 || NULL == str1 || NULL == delimeter)
+		return NULL;
 	unsigned long len = strlen(delimeter)+strlen(str1)+strlen(str2)+1;
 	char *res = malloc(MB_CUR_MAX * len * sizeof(*res));
 	if (NULL != res) {
