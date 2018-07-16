@@ -291,6 +291,8 @@ int main(int argc, char *argv[]) {
 			free(fname);
 			break;
 		case Q_ADD:;
+			if ('\0' == *qval)
+				err_exit(args.isquiet, EM_QUERY);
 			struct dbitem item = make_item(qval);
 			char *fn = m_strjoin("/", args.dir, item.key);
 			if (NULL == fn)
